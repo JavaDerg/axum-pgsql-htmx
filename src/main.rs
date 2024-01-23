@@ -1,4 +1,5 @@
 use axum::error_handling::HandleErrorLayer;
+use axum::extract::Path;
 use axum::http::StatusCode;
 use axum::Router;
 use axum::routing::get;
@@ -60,7 +61,6 @@ async fn main() -> eyre::Result<()> {
 fn routes() -> Router<AppState> {
     Router::new()
         .route("/", get(index))
-        .route("/test", get(test))
 }
 
 async fn index() -> Markup {
@@ -69,18 +69,12 @@ async fn index() -> Markup {
         html {
             head {
                 title { "Hello World" }
-                script src="https://unpkg.com/htmx.org@1.9" defer;
+                script src="https://unpkg.com/htmx.org@1.9" {}
+                // script src="https://unpkg.com/htmx.org@1.9/dist/ext/sse.js" {}
             }
             body {
                 h1 { "Hello World" }
-                button hx-get="/test" hx-swap="outerHTML" { "Click me" }
             }
         }
-    )
-}
-
-async fn test() -> Markup {
-    html!(
-        "Hi ^^"
     )
 }

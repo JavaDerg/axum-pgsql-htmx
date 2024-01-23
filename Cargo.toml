@@ -6,7 +6,7 @@ edition = "2021"
 [dependencies]
 tokio = { version = "1.35", features = ["rt-multi-thread", "macros", "net"] }
 
-axum = { version = "0.7", features = ["macros"] }
+axum = { version = "0.7", features = ["macros", "form"] }
 tower = "0.4"
 tower-sessions = { version = "0.9", features = ["axum-core", "moka-store", "postgres-store", "deletion-task"], default-features = false }
 
@@ -22,3 +22,5 @@ color-eyre = "0.6"
 thiserror = "1.0"
 
 maud = { version = "0.26", features = ["axum"] }
+
+serde = { version = "1.0", features = ["derive"] }
